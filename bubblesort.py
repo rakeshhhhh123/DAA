@@ -1,8 +1,13 @@
-numbers = [5, 2, 4, 1, 3]
+n = int(input("Enter number of elements: "))
 
-for i in range(len(numbers)):
-    for j in range(len(numbers) - i - 1):
-        if numbers[j] > numbers[j + 1]:
-            numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+a = []
 
-print(numbers)
+for i in range(n):
+    a.append(int(input("Enter element: ")))
+
+for i in range(n - 1):
+    for j in range(n - 1 - i):
+        if a[j] > a[j + 1]:
+            a[j], a[j + 1] = a[j + 1], a[j]
+
+print("Sorted list:", a)
