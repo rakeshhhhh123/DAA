@@ -1,10 +1,17 @@
-numbers = [8, 3, 6, 1, 5]
+n = int(input("Enter number of elements: "))
 
-for i in range(len(numbers)):
+a = []
+
+for i in range(n):
+    a.append(int(input("Enter element: ")))
+
+for i in range(n - 1):
     min_index = i
-    for j in range(i + 1, len(numbers)):
-        if numbers[j] < numbers[min_index]:
-            min_index = j
-    numbers[i], numbers[min_index] = numbers[min_index], numbers[i]
 
-print(numbers)
+    for j in range(i + 1, n):
+        if a[j] < a[min_index]:
+            min_index = j
+
+    a[i], a[min_index] = a[min_index], a[i]
+
+print("Sorted list:", a)
