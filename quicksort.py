@@ -1,13 +1,29 @@
-def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr
+n = int(input("Enter number of elements: "))
 
-    pivot = arr[0]
-    left = [x for x in arr[1:] if x <= pivot]
-    right = [x for x in arr[1:] if x > pivot]
+a = []
 
-    return quick_sort(left) + [pivot] + quick_sort(right)
+for i in range(n):
+    a.append(int(input("Enter element: ")))
 
-numbers = [5, 2, 4, 1, 3]
+stack = [(0, n - 1)]
 
-print(quick_sort(numbers))
+while stack:
+    low, high = stack.pop()
+
+    if low < high:
+        pivot = a[high]
+        i = low - 1
+
+        for j in range(low, high):
+            if a[j] < pivot:
+                i += 1
+                a[i], a[j] = a[j], a[i]
+
+        a[i + 1], a[high] = a[high], a[i + 1]
+
+        p = i + 1
+
+        stack.append((low, p - 1))
+        stack.append((p + 1, high))
+
+print("Sorted list:", a)
