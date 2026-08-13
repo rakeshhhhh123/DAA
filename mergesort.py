@@ -1,39 +1,41 @@
-def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
+n = int(input("Enter number of elements: "))
 
-        left = arr[:mid]
-        right = arr[mid:]
+a = []
 
-        merge_sort(left)
-        merge_sort(right)
+for i in range(n):
+    a.append(int(input("Enter element: ")))
 
-        i = 0
-        j = 0
-        k = 0
+size = 1
 
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                arr[k] = left[i]
+while size < n:
+    for left in range(0, n, 2 * size):
+        mid = min(left + size, n)
+        right = min(left + 2 * size, n)
+
+        temp = []
+        i = left
+        j = mid
+
+        while i < mid and j < right:
+            if a[i] < a[j]:
+                temp.append(a[i])
                 i += 1
             else:
-                arr[k] = right[j]
+                temp.append(a[j])
                 j += 1
-            k += 1
 
-        while i < len(left):
-            arr[k] = left[i]
+        while i < mid:
+            temp.append(a[i])
             i += 1
-            k += 1
 
-        while j < len(right):
-            arr[k] = right[j]
+        while j < right:
+            temp.append(a[j])
             j += 1
-            k += 1
 
+        for k in range(len(temp)):
+            a[left + k] = temp[k]
 
-arr = [8, 3, 5, 1, 7, 2]
+    size *= 2
 
-merge_sort(arr)
+print("Sorted list:", a)
 
-print("Sorted array:", arr)
